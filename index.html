@@ -10,7 +10,7 @@
 <h1 id="header"></h1>
 <script>document.body.style.backgroundColor = "grey";
 var e = document.createElement("img");
-e.src = "https://i.ibb.co/k0bgTKR/Screen-Shot-2022-08-11-at-10-01-00-AM.png";
+e.src = "https://i.ibb.co/VCWF2Dc/download.png";
 document.body.appendChild(e);
 e.style.width = "16%";
 e.style.position = "absolute";
@@ -18,20 +18,20 @@ e.style.top = "50%";
 e.style.transform = "translateY(-50%)";
 e.style.left = "50%";
 e.style.transform += " translateX(-50%)";
-var r = 0,
-    a = 0,
-    y = 1,
+var a = 0,
+    i = 0,
     c = 1,
-    i = 1,
+    p = 1,
     d = 1,
-    p = window.innerWidth,
-    m = window.innerHeight;
+    y = 1,
+    m = window.innerWidth,
+    u = window.innerHeight;
 
-function u() {
-  r += y * i, a += c * d, r >= p ? i = -1 : r <= 0 && (i = 1), a >= m ? d = -1 : a <= 0 && (d = 1), e.style.left = r + "px", e.style.top = a + "px";
+function b() {
+  a += c * d, i += p * y, a >= m ? d = -1 : a <= 0 && (d = 1), i >= u ? y = -1 : i <= 0 && (y = 1), e.style.left = a + "px", e.style.top = i + "px";
 }
 
-setInterval(u, 10);
+setInterval(b, 10);
 var t = document.createElement("div");
 t.style.width = "100px";
 t.style.height = "100px";
@@ -87,7 +87,16 @@ s.onclick = function () {
   window.location.href = "https://teemsploit-executor.github.io/";
 };
 
-s.style.transform += " translateY(450%)";</script>
-box.style.border = '5px solid white';
+s.style.transform += " translateY(450%)";
+t.style.border = "5px solid white";
+var r = document.createElement("img");
+r.src = "https://i.ibb.co/VCWF2Dc/download.png";
+r.style.position = "absolute";
+r.style.top = "50%";
+r.style.left = "50%";
+r.style.transform = "translate(-50%, -50%)";
+document.body.appendChild(r);
+r.style.width = "20%";
+r.style.transform += " translateY(-60%)";</script>
 </body>
 </html>
