@@ -1,0 +1,215 @@
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "", serif;
+  background-color: #111;
+  color: #fff;
+  overflow-y: thin; /* Enable vertical scrollbar */
+  scrollbar-width: none; /* Customize scrollbar width */
+  scrollbar-color: #111 #111; /* Customize scrollbar colors */
+}
+
+h1 {
+  font-family: "Times New Roman", serif;
+}
+
+/* Remove default browser scrollbar styles */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #222;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+/* Top bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0e0e0e;
+  color: #fff;
+  padding: 10px;
+  border-bottom: 0.1px solid #fff; /* Add the white bottom border */
+}
+
+.menu-buttons {
+  background: none;
+}
+
+.top-bar input[type="text"] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  padding: 5px;
+  width: 200px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 100px 0;
+  background-color: #111;
+  color: #fff;
+}
+
+/* Past Projects */
+#past-projects {
+  padding: 50px;
+  white-space: nowrap; /* Keep all project boxes in a single row */
+  overflow: hidden; /* Hide horizontal overflow */
+}
+
+.project {
+  display: inline-block; /* Display projects in a single row */
+  vertical-align: top;
+  margin-right: 20px; /* Add space between project boxes */
+  background-color: #222; /* Add background color to project boxes */
+  padding: 20px; /* Add padding to project boxes */
+  border-radius: 5px; /* Add border radius to project boxes */
+  transition: all 0.3s; /* Add transition effect */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+}
+
+.project:hover {
+  transform: scale(1.1);
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5); /* Add larger shadow on hover */
+}
+
+.project h3 {
+  margin-top: 0;
+}
+
+.project-image {
+  margin-bottom: 10px;
+}
+
+.project-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.project-info {
+  text-align: center;
+}
+
+.project-buttons {
+  margin-top: 10px;
+}
+
+.project-buttons a {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 3px;
+}
+
+/* About Me */
+#about-me {
+  text-align: center;
+  padding: 100px 0;
+  background-color: #111;
+  color: #fff;
+}
+
+#about-me h2 {
+  margin-top: 0;
+}
+
+.hire-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background: linear-gradient(to right, #222, #111);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: all 0.3s;
+  border: 2px solid #fff; /* Add white border */
+}
+
+.hire-button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(to right, #111, #222);
+  border-color: #fff; /* Change border color on hover */
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -200px;
+  width: 200px;
+  height: 100vh;
+  background-color: #333;
+  color: #fff;
+  z-index: 999;
+  transition: right 0.3s;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.sidebar-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-top: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .project {
+    width: calc(100% - 40px);
+    max-width: 400px;
+  }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hire</title>
+  <style>
+    body {
+      background-color: #101010;
+      color: #FFFFFF;
+      font-family: Arial, sans-serif;
+    }
+    
+    .form-container {
+      max-width: 60%;
+      padding: 20px;
+      background-color: #101010;
+    }
+    
+    .form-container input[type="text"],
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-bottom: 3px solid #333333;
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+    
+    .form-container input[type="text"]:focus,
+    .form-container textarea:focus {
+      border-bottom: 3px solid #FFFFFF;
+      outline: none;
+    }
+    
+    .form-container textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    
+    .form-container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+    
+    .form-container input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .footer {
+        padding-top: 5%;
+        font-weight: 50;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form id="myForm" action="./thankyou" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required>
+      
+      <label for="short-description">Short Description:</label>
+      <input type="text" id="short-description" name="short_description" required>
+      
+      <label for="long-description">Long Description:</label>
+      <textarea id="long-description" name="long_description" required></textarea>
+      
+      <label for="discord-tag">Discord Tag:</label>
+      <input type="text" id="discord-tag" name="discord_tag" required>
+      
+      <input type="submit" value="Submit">
+      <label class="footer">Note: Your IP **WILL** be logged and displayed publicly, using a vpn will get you blacklisted.</label>
+    </form>
+  </div>
+
+  <script>
+    const token = secret.TOKEN
+    const form = document.getElementById("myForm");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const data = new FormData(form);
+      const payload = {
+        name: data.get("name"),
+        email: data.get("email"),
+        short_description: data.get("short_description"),
+        long_description: data.get("long_description"),
+        discord_tag: data.get("discord_tag")
+      };
+
+      // Fetch the user's IP address
+      fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
+        .then(result => {
+          const ipAddress = result.ip;
+          // Log the IP address along with the form submission
+          payload.ip_address = ipAddress;
+
+          // Send the payload to the provided Discord webhook
+          const webhookURL = `https://canary.discord.com/api/webhooks/1110177812121395230/${token}`;
+          fetch(webhookURL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              embeds: [{
+                title: "Form Submission",
+                fields: [
+                  { name: "Name", value: payload.name },
+                  { name: "Email", value: payload.email },
+                  { name: "Short Description", value: payload.short_description },
+                  { name: "Long Description", value: payload.long_description },
+                  { name: "Discord Tag", value: payload.discord_tag },
+                  { name: "IP Address", value: payload.ip_address }
+                ]
+              }]
+            })
+          })
+          .then(response => {
+            if (response.ok) {
+              window.location.href = "./thankyou";
+            } else {
+              console.error("Error sending data to Discord webhook.");
+            }
+          })
+          .catch(error => {
+            console.error("Error sending data to Discord webhook:", error);
+            window.location.href = `./error?${error}`;
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching IP address:", error);
+          // Proceed with the form submission even if IP address couldn't be fetched
+          const webhookURL = `https://canary.discord.com/api/webhooks/1110177812121395230/${token}`;
+          fetch(webhookURL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              embeds: [{
+                title: "Form Submission",
+                fields: [
+                  { name: "Name", value: payload.name },
+                  { name: "Email", value: payload.email },
+                  { name: "Short Description", value: payload.short_description },
+                  { name: "Long Description", value: payload.long_description },
+                  { name: "Discord Tag", value: payload.discord_tag },
+                  { name: "IP Address", value: "Unknown" }
+                ]
+              }]
+            })
+          })
+          .then(response => {
+            if (response.ok) {
+              window.location.href = "./thankyou";
+            } else {
+              console.error("Error sending data to Discord webhook.");
+            }
+          })
+          .catch(error => {
+            console.error("Error sending data to Discord webhook:", error);
+            window.location.href = `./error?${error}`;
+          });
+        });
+    });
+  </script>
+</body>
+</html>

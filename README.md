@@ -1,3 +1,2 @@
-# TeemSucks.github.io
-
-website thing
+# portfolio
+idk
