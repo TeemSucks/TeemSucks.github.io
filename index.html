@@ -6,6 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker Terminal</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: green;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .terminal {
+            width: 90%;
+            max-width: 900px;
+            height: 80vh;
+            background-color: #000000;
+            border: 2px solid #33FF33;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px #33FF33;
+            display: flex;
+            flex-direction: column;
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px #33FF33;
+                border-color: #33FF33;
+            }
+            100% {
+                box-shadow: 0 0 20px #33FF33;
+                border-color: #33FF33;
+            }
+        }
+        
+        .title {
+            text-align: center;
+            color: #33FF33;
+            font-size: 1.2em;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .output {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+            color: #33FF33;
+        }
+        
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prompt {
+            margin-right: 10px;
+            color: #33FF33;
+        }
+        
+        .input-field {
+            background: none;
+            border: none;
+            outline: none;
+            color: #33FF33;
+            font-family: inherit;
+            font-size: inherit;
+            width: 100%;
+            caret-color: #33FF33;
+        }
+        
+        .content, .output {
+            padding: 0 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="terminal">
